@@ -48,6 +48,7 @@
             this.monthCalendar1.Margin = new System.Windows.Forms.Padding(13, 14, 13, 14);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected_1);
             // 
             // lblTodoList
             // 
@@ -74,7 +75,7 @@
             // txtAddToDoList
             // 
             this.txtAddToDoList.Location = new System.Drawing.Point(26, 418);
-            this.txtAddToDoList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAddToDoList.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddToDoList.Multiline = true;
             this.txtAddToDoList.Name = "txtAddToDoList";
             this.txtAddToDoList.Size = new System.Drawing.Size(753, 60);
@@ -83,22 +84,24 @@
             // btnAddToDoList
             // 
             this.btnAddToDoList.Location = new System.Drawing.Point(691, 489);
-            this.btnAddToDoList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddToDoList.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddToDoList.Name = "btnAddToDoList";
             this.btnAddToDoList.Size = new System.Drawing.Size(89, 34);
             this.btnAddToDoList.TabIndex = 5;
             this.btnAddToDoList.Text = "추가";
             this.btnAddToDoList.UseVisualStyleBackColor = true;
+            this.btnAddToDoList.Click += new System.EventHandler(this.btnAddToDoList_Click_1);
             // 
             // btnDelToDoList
             // 
             this.btnDelToDoList.Location = new System.Drawing.Point(691, 330);
-            this.btnDelToDoList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelToDoList.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelToDoList.Name = "btnDelToDoList";
             this.btnDelToDoList.Size = new System.Drawing.Size(89, 34);
             this.btnDelToDoList.TabIndex = 6;
             this.btnDelToDoList.Text = "삭제";
             this.btnDelToDoList.UseVisualStyleBackColor = true;
+            this.btnDelToDoList.Click += new System.EventHandler(this.btnDelToDoList_Click_1);
             // 
             // listViewToDoList
             // 
@@ -106,7 +109,7 @@
             this.columnSchedule});
             this.listViewToDoList.HideSelection = false;
             this.listViewToDoList.Location = new System.Drawing.Point(357, 150);
-            this.listViewToDoList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewToDoList.Margin = new System.Windows.Forms.Padding(4);
             this.listViewToDoList.Name = "listViewToDoList";
             this.listViewToDoList.OwnerDraw = true;
             this.listViewToDoList.Size = new System.Drawing.Size(421, 169);
@@ -158,7 +161,7 @@
             this.Controls.Add(this.lblAddToDoList);
             this.Controls.Add(this.lblTodoList);
             this.Controls.Add(this.monthCalendar1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
