@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Globalization;
+using System.Reflection;
 
 namespace CalendarScheduler
 {
@@ -81,7 +83,52 @@ namespace CalendarScheduler
         {
             DateTime selectedDate = monthCalendar1.SelectionRange.Start;
             SelectedDate = selectedDate.ToString("yyyy-MM-dd");
+
+            // 선택된 날짜를 기반으로 해당 날짜를 포함하는 파일들을 가져와서 리스트뷰에 출력
+            DisplayFilesInListView(GetMatchingFiles(filePath.FullName, SelectedDate));
         }
+        private void DisplayFilesInListView(string[] files)
+        {
+            // 리스트뷰를 초기화합니다.
+            listViewToDoList.Items.Clear();
+
+            // 파일들을 리스트뷰에 추가합니다.
+            foreach (string filePath in files)
+            {
+                // 파일 정보를 가져오기
+                FileInfo fileInfo = new FileInfo(filePath);
+
+                // 파일 이름에서 날짜를 추출
+                DateTime dateFromFileName;
+                if (DateTime.TryParseExact(fileInfo.Name, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateFromFileName))
+                {
+                    // ListViewItem을 생성하고 파일 이름을 추가합니다.
+                    ListViewItem item = new ListViewItem(dateFromFileName.ToString("yyyy-MM-dd"));
+
+                    // 추가적인 열이 필요한 경우 아래와 같이 추가할 수 있습니다.
+                    item.SubItems.Add(fileInfo.Name); // 파일 이름 전체
+                    item.SubItems.Add(fileInfo.Length.ToString()); // 크기
+                    item.SubItems.Add(fileInfo.LastWriteTime.ToString()); // 수정한 날짜
+
+                    // ListViewItem을 ListView에 추가합니다.
+                    listViewToDoList.Items.Add(item);
+                }
+            }
+        }
+        private string[] GetMatchingFiles(string folderPath, string selectedDate)
+        {
+            // 해당 날짜를 포함하는 파일들을 찾아 반환합니다.
+            string[] files = Directory.GetFiles(folderPath, "*" + selectedDate + "*.txt");
+            return files;
+        }
+
+
+
+
+
+
+
+
         public string GetSelectedDate()
         {
             return SelectedDate;
