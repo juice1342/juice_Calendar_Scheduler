@@ -53,13 +53,22 @@ namespace CalendarScheduler
             fileName = GetSelectedDate() + ".txt";
 
             // 파일 저장하기
-            // 하루 일정 최대 5개까지 저장 가능하게 할 것.
             filePath_str = @"c:\CalendarScheduler\" + fileName;
-            // 계속 덮어쓰기만 되고 있음 여기 if문이 무시 되고 있음 왜지
-            if (File.Exists(filePath_str))
+            // 파일 중복 화인, 중복일 경우 파일이름(숫자).txt로 저장됨
+            bool fileExist = true;
+            int fileCnt = 0;
+            while (fileExist)
             {
-                fileName = GetSelectedDate() + ".txt";
-                filePath_str = @"c:\CalendarScheduler\" + fileName;
+                if (File.Exists(filePath_str))
+                {
+                    fileCnt++;
+                    fileName = GetSelectedDate() + "(" + fileCnt + ")" + ".txt";
+                    filePath_str = @"c:\CalendarScheduler\" + fileName;
+                }
+                else
+                {
+                    fileExist = false;
+                }
             }
             StreamWriter writer;
             writer = File.CreateText(filePath_str);
