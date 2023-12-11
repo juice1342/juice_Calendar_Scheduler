@@ -8,3 +8,13 @@ C:\Users\LG\Desktop\달력 스케줄러\sln_Scheduler\CalendarScheduler\obj\Debu
 C:\Users\LG\Desktop\달력 스케줄러\sln_Scheduler\CalendarScheduler\obj\Debug\CalendarScheduler.csproj.CoreCompileInputs.cache
 C:\Users\LG\Desktop\달력 스케줄러\sln_Scheduler\CalendarScheduler\obj\Debug\CalendarScheduler.exe
 C:\Users\LG\Desktop\달력 스케줄러\sln_Scheduler\CalendarScheduler\obj\Debug\CalendarScheduler.pdb
+E:\cc\CalendarScheduler\bin\Debug\CalendarScheduler.exe.config
+E:\cc\CalendarScheduler\bin\Debug\CalendarScheduler.exe
+E:\cc\CalendarScheduler\bin\Debug\CalendarScheduler.pdb
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.csproj.AssemblyReference.cache
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.Form1.resources
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.Properties.Resources.resources
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.csproj.GenerateResource.cache
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.csproj.CoreCompileInputs.cache
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.exe
+E:\cc\CalendarScheduler\obj\Debug\CalendarScheduler.pdb
