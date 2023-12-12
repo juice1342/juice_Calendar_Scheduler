@@ -8,14 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Globalization;
-using System.Reflection;
 
 namespace CalendarScheduler
 {
     public partial class Form1 : Form
     {
-        //private ListView listView;
+        private ListView listView;
 
         public Form1()
         {
@@ -104,7 +102,7 @@ namespace CalendarScheduler
             List<string> scheduleFiles = GetScheduleFilesForDate(selectedDate);
 
             // 리스트뷰 초기화
-            listViewToDoList.Items.Clear();
+            listView.Items.Clear();
 
             // 각 파일에 대한 일정을 리스트뷰에 추가
             foreach (string file in scheduleFiles)
@@ -115,50 +113,10 @@ namespace CalendarScheduler
                 {
                     ListViewItem item = new ListViewItem(selectedDate.ToString("yyyy-MM-dd"));
                     item.SubItems.Add(schedule);
-                    listViewToDoList.Items.Add(item);
-                }
-            }
-
-            // 선택된 날짜를 기반으로 해당 날짜를 포함하는 파일들을 가져와서 리스트뷰에 출력
-            DisplayFilesInListView(GetMatchingFiles(filePath.FullName, SelectedDate));
-
-        }
-        private void DisplayFilesInListView(string[] files)
-        {
-            // 리스트뷰를 초기화합니다.
-            listViewToDoList.Items.Clear();
-
-            // 파일들을 리스트뷰에 추가합니다.
-            foreach (string filePath in files)
-            {
-                // 파일 정보를 가져오기
-                FileInfo fileInfo = new FileInfo(filePath);
-
-                // 파일 이름에서 날짜를 추출
-                DateTime dateFromFileName;
-                if (DateTime.TryParseExact(fileInfo.Name, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateFromFileName))
-                {
-                    // ListViewItem을 생성하고 파일 이름을 추가합니다.
-                    ListViewItem item = new ListViewItem(dateFromFileName.ToString("yyyy-MM-dd"));
-
-                    // 추가적인 열이 필요한 경우 아래와 같이 추가할 수 있습니다.
-                    item.SubItems.Add(fileInfo.Name); // 파일 이름 전체
-                    item.SubItems.Add(fileInfo.Length.ToString()); // 크기
-                    item.SubItems.Add(fileInfo.LastWriteTime.ToString()); // 수정한 날짜
-
-                    // ListViewItem을 ListView에 추가합니다.
-                    listViewToDoList.Items.Add(item);
+                    listView.Items.Add(item);
                 }
             }
         }
-        private string[] GetMatchingFiles(string folderPath, string selectedDate)
-        {
-            // 해당 날짜를 포함하는 파일들을 찾아 반환합니다.
-            string[] files = Directory.GetFiles(folderPath, "*" + selectedDate + "*.txt");
-            return files;
-        }
-
-
         public string GetSelectedDate()
         {
             return SelectedDate;
@@ -166,23 +124,12 @@ namespace CalendarScheduler
 
         private void btnDelToDoList_Click_1(object sender, EventArgs e)
         {
-            /*
-            string selectedFileName = "";   // 선택된 파일 경로
-            if (File.Exists(selectedFileName) == true)
-            {
-                File.Delete(selectedFileName);
-            }
-            else
-            {
-                MessageBox.Show("존재하지 않는 일정입니다.");
-            }
-            */
 
             // 선택된 항목이 있는지 확인
-            if (listViewToDoList.SelectedItems.Count > 0)
+            if (listView.SelectedItems.Count > 0)
             {
                 // 선택된 항목의 날짜를 가져오기
-                string selectedDate = listViewToDoList.SelectedItems[0].Text;
+                string selectedDate = listView.SelectedItems[0].Text;
 
                 // 해당 날짜의 파일 경로 생성
                 string filePathToDelete = Path.Combine(@"c:\CalendarScheduler", $"{selectedDate}.txt");
@@ -193,7 +140,7 @@ namespace CalendarScheduler
                     File.Delete(filePathToDelete);
 
                     // ListView에서도 선택된 항목 삭제
-                    listViewToDoList.SelectedItems[0].Remove();
+                    listView.SelectedItems[0].Remove();
 
                     MessageBox.Show("일정이 삭제되었습니다!");
                 }
@@ -212,18 +159,18 @@ namespace CalendarScheduler
         private void InitializeListView()
         {
             // ListView 컨트롤 생성
-            listViewToDoList = new ListView();
-            listViewToDoList.View = View.Details;
+            listView = new ListView();
+            listView.View = View.Details;
 
             // ListView에 열 추가
-            listViewToDoList.Columns.Add("날짜", 110);
-            listViewToDoList.Columns.Add("일정", 250);
+            listView.Columns.Add("날짜", 110);
+            listView.Columns.Add("일정", 250);
 
-            listViewToDoList.Size = new Size(296, 114);
-            listViewToDoList.Location = new Point(250, 100);
+            listView.Size = new Size(296, 114);
+            listView.Location = new Point(250, 100);
 
             // ListView를 폼에 추가
-            Controls.Add(listViewToDoList);
+            Controls.Add(listView);
         }
 
         private void LoadExistingSchedules()
@@ -249,12 +196,12 @@ namespace CalendarScheduler
             // ListView에 일정 정보 추가
             ListViewItem item = new ListViewItem(date);
             item.SubItems.Add(schedule);
-            listViewToDoList.Items.Add(item);
+            listView.Items.Add(item);
         }
 
 
         private List<string> GetScheduleFilesForDate(DateTime selectedDate)
-{
+        {
             string directoryPath = @"c:\CalendarScheduler\";
 
             // 해당 날짜에 대한 일정 파일들을 검색

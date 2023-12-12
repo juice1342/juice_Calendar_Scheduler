@@ -38,9 +38,6 @@
             this.lblTimeDate = new System.Windows.Forms.Label();
             this.lblTimeClock = new System.Windows.Forms.Label();
             this.TimerClock = new System.Windows.Forms.Timer(this.components);
-            this.columnDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnSchedule = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewToDoList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -122,33 +119,6 @@
             // 
             this.TimerClock.Interval = 1000;
             // 
-            // columnDate
-            // 
-            this.columnDate.Text = "날짜";
-            this.columnDate.Width = 100;
-            // 
-            // columnSchedule
-            // 
-            this.columnSchedule.Text = "일정";
-            this.columnSchedule.Width = 180;
-            // 
-            // listViewToDoList
-            // 
-            this.listViewToDoList.BackColor = System.Drawing.SystemColors.Window;
-            this.listViewToDoList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnDate,
-            this.columnSchedule});
-            this.listViewToDoList.FullRowSelect = true;
-            this.listViewToDoList.GridLines = true;
-            this.listViewToDoList.HideSelection = false;
-            this.listViewToDoList.Location = new System.Drawing.Point(250, 100);
-            this.listViewToDoList.Name = "listViewToDoList";
-            this.listViewToDoList.OwnerDraw = true;
-            this.listViewToDoList.Size = new System.Drawing.Size(296, 114);
-            this.listViewToDoList.TabIndex = 8;
-            this.listViewToDoList.UseCompatibleStateImageBehavior = false;
-            this.listViewToDoList.View = System.Windows.Forms.View.Details;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -156,7 +126,6 @@
             this.ClientSize = new System.Drawing.Size(568, 405);
             this.Controls.Add(this.lblTimeClock);
             this.Controls.Add(this.lblTimeDate);
-            this.Controls.Add(this.listViewToDoList);
             this.Controls.Add(this.btnDelToDoList);
             this.Controls.Add(this.btnAddToDoList);
             this.Controls.Add(this.txtAddToDoList);
@@ -184,9 +153,6 @@
         private System.Windows.Forms.Label lblTimeDate;
         private System.Windows.Forms.Label lblTimeClock;
         private System.Windows.Forms.Timer TimerClock;
-        private System.Windows.Forms.ColumnHeader columnDate;
-        private System.Windows.Forms.ColumnHeader columnSchedule;
-        private System.Windows.Forms.ListView listViewToDoList;
     }
 }
 
